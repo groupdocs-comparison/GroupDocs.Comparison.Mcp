@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "description": "MCP server for GroupDocs.Comparison for .NET — compare two documents and produce a marked-up diff report with a change-count summary, plus inspect source document info (file type, page count, dimensions). Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats. Exposes Compare and GetDocumentInfo tools to AI agents.",
+  "description": "MCP server for GroupDocs.Comparison — compare documents and inspect source info via AI agents.",
   "name": "io.github.groupdocs-comparison/groupdocs-comparison-mcp",
   "version": "26.5.0",
   "packages": [
