@@ -1,0 +1,40 @@
+# GroupDocs.Comparison MCP Server
+
+MCP server that exposes GroupDocs.Comparison for .NET — compare PDF, Word, Excel, PowerPoint, and text documents and produce diff reports via AI agents (Claude, Cursor, VS Code / GitHub Copilot, and other MCP-compatible clients).
+
+## Install
+
+- With dnx (.NET 10 SDK, no install step): `dnx GroupDocs.Comparison.Mcp@26.5.0 --yes`
+- As a global dotnet tool: `dotnet tool install -g GroupDocs.Comparison.Mcp` then run `groupdocs-comparison-mcp`
+- As a Docker container: `docker run --rm -i -v $(pwd)/documents:/data ghcr.io/groupdocs-comparison/comparison-net-mcp:latest`
+
+## MCP tools
+
+- Compare — compare two documents (source vs target), produce a marked-up result file with the differences highlighted, return a change-count summary; takes optional `sourcePassword` / `targetPassword` for protected documents
+- GetDocumentInfo — inspect a single source document and return file type, page count, file size, and per-page dimensions as JSON; no comparison performed; takes optional `password` for protected documents
+
+## Supported formats
+
+PDF, DOCX, XLSX, PPTX, ODT, ODS, ODP, RTF, TXT, HTML, and 30+ more document and image formats.
+
+## Environment variables
+
+- GROUPDOCS_MCP_STORAGE_PATH — base folder for input + output (defaults to current working directory)
+- GROUPDOCS_MCP_OUTPUT_PATH — optional, routes output files to a separate folder
+- GROUPDOCS_LICENSE_PATH — path to GroupDocs.Total.lic, omit for evaluation mode (output watermarked)
+
+## Key links
+
+- NuGet: https://www.nuget.org/packages/GroupDocs.Comparison.Mcp
+- Repository: https://github.com/groupdocs-comparison/GroupDocs.Comparison.Mcp
+- Docker: ghcr.io/groupdocs-comparison/comparison-net-mcp and docker.io/groupdocs/comparison-net-mcp
+- License: MIT
+
+## Example prompts for AI agents
+
+- "Compare old.pdf and new.pdf — what changed?"
+- "Diff contract-v1.docx against contract-v2.docx and tell me the change count."
+- "Show the differences between budget-q1.xlsx and budget-q2.xlsx."
+- "How many edits separate report-draft.docx from report-final.docx?"
+- "How many pages does report.pdf have? Who's the author?"
+- "Inspect /docs/legal-brief.pdf — what's the file type and page count?"

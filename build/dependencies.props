@@ -1,0 +1,44 @@
+<Project>
+
+  <PropertyGroup Label="SDK Versions">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Reproducible build">
+    <Deterministic>true</Deterministic>
+    <!-- Normalizes paths inside .pdb/.dll on CI for reproducible output -->
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package information">
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/groupdocs-comparison/GroupDocs.Comparison.Mcp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/groupdocs-comparison/GroupDocs.Comparison.Mcp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>GroupDocs Contributors</Authors>
+    <Company>Aspose</Company>
+    <Copyright>Copyright © Aspose Pty Ltd $([System.DateTime]::Now.Year)</Copyright>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>true</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package Versions">
+    <GroupDocsComparisonMcp>26.5.0</GroupDocsComparisonMcp>
+  </PropertyGroup>
+
+  <PropertyGroup Label="External Dependency Versions">
+    <GroupDocsMcpCore>26.4.1</GroupDocsMcpCore>
+    <GroupDocsComparison>26.4.0</GroupDocsComparison>
+    <MicrosoftExtensionsHosting>10.0.5</MicrosoftExtensionsHosting>
+    <ModelContextProtocol>1.1.0</ModelContextProtocol>
+    <MicrosoftSourceLinkGithub>8.0.0</MicrosoftSourceLinkGithub>
+    <!-- Must match the SkiaSharp version $(GroupDocsComparison) transitively pulls. Re-verify after every GroupDocsComparison bump (ABI-incompatible otherwise). -->
+    <SkiaSharp>3.119.0</SkiaSharp>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Common Settings">
+    <PackageReleaseNotes>https://github.com/groupdocs-comparison/GroupDocs.Comparison.Mcp/releases/tag/$(GroupDocsComparisonMcp)</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>

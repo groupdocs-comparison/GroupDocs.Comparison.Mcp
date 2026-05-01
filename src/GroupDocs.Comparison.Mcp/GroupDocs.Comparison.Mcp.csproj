@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>GroupDocs.Comparison.Mcp</PackageId>
+    <Version>$(GroupDocsComparisonMcp)</Version>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>MCP server for GroupDocs.Comparison for .NET — compare two documents and produce a marked-up diff report with a change-count summary, plus inspect source document info (file type, page count, dimensions). Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats. Exposes Compare and GetDocumentInfo tools to AI agents.</Description>
+    <PackageTags>groupdocs;comparison;mcp;model-context-protocol;mcp-server;dotnet-tool;ai;document-comparison;diff;document-info</PackageTags>
+    <PackageIcon>images\icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <PackageType>McpServer</PackageType>
+    <ToolCommandName>groupdocs-comparison-mcp</ToolCommandName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\icon.png" Pack="true" Visible="false" PackagePath="images\icon.png" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="/" />
+    <None Include=".mcp\server.json" Pack="true" PackagePath=".mcp/server.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Core infrastructure — NuGet packages from groupdocs-mcp-core -->
+    <PackageReference Include="GroupDocs.Mcp.Core" Version="$(GroupDocsMcpCore)" />
+    <PackageReference Include="GroupDocs.Mcp.Local.Storage" Version="$(GroupDocsMcpCore)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GroupDocs.Comparison" Version="$(GroupDocsComparison)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsHosting)" />
+    <PackageReference Include="ModelContextProtocol" Version="$(ModelContextProtocol)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- GroupDocs.Comparison's nuspec already declares SkiaSharp.NativeAssets.Linux.NoDependencies, but we pin it explicitly so transitive resolution is deterministic and reproducible across runtimes. -->
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="$(SkiaSharp)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- GroupDocs.Comparison's Cells (Excel) and image-format paths call System.Drawing.Common internally. On non-Windows that throws PlatformNotSupportedException unless this flag is set. Pair with libgdiplus + libfontconfig1 in docker/Dockerfile. Drop once upstream migrates off System.Drawing — flag was removed in System.Drawing.Common 7.0+. -->
+    <RuntimeHostConfigurationOption Include="System.Drawing.EnableUnixSupport" Value="true" />
+  </ItemGroup>
+
+</Project>
