@@ -1,7 +1,6 @@
 using GroupDocs.Mcp.Core;
 using GroupDocs.Mcp.Core.Licensing;
 using GroupDocs.Comparison.Mcp.Tools;
-using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
@@ -11,13 +10,6 @@ public class GetDocumentInfoToolTests
 {
     private readonly Mock<IFileResolver> _resolver = new();
     private readonly Mock<ILicenseManager> _licenseManager = new();
-    private readonly Mock<IFileStorage> _storage = new();
-    private readonly OutputHelper _output;
-
-    public GetDocumentInfoToolTests()
-    {
-        _output = new OutputHelper(_storage.Object, Microsoft.Extensions.Options.Options.Create(new McpConfig()));
-    }
 
     [Fact]
     public async Task GetDocumentInfo_WhenResolverThrows_PropagatesException()
@@ -30,7 +22,6 @@ public class GetDocumentInfoToolTests
             GetDocumentInfoTool.GetDocumentInfo(
                 _resolver.Object,
                 _licenseManager.Object,
-                _output,
                 new FileInput { FilePath = "missing.pdf" }));
 
         Assert.Contains("missing.pdf", ex.Message);
@@ -54,7 +45,6 @@ public class GetDocumentInfoToolTests
             GetDocumentInfoTool.GetDocumentInfo(
                 _resolver.Object,
                 _licenseManager.Object,
-                _output,
                 new FileInput { FilePath = "anything.pdf" }));
 
         Assert.Equal(new[] { "license", "resolve" }, sequence);
@@ -75,7 +65,6 @@ public class GetDocumentInfoToolTests
             GetDocumentInfoTool.GetDocumentInfo(
                 _resolver.Object,
                 _licenseManager.Object,
-                _output,
                 input));
 
         Assert.Same(input, captured);
