@@ -4,13 +4,14 @@ MCP server that exposes GroupDocs.Comparison for .NET — compare PDF, Word, Exc
 
 ## Install
 
-- With dnx (.NET 10 SDK, no install step): `dnx GroupDocs.Comparison.Mcp@26.5.2 --yes`
+- With dnx (.NET 10 SDK, no install step): `dnx GroupDocs.Comparison.Mcp@26.7.0 --yes`
 - As a global dotnet tool: `dotnet tool install -g GroupDocs.Comparison.Mcp` then run `groupdocs-comparison-mcp`
 - As a Docker container: `docker run --rm -i -v $(pwd)/documents:/data ghcr.io/groupdocs-comparison/comparison-net-mcp:latest`
 
 ## MCP tools
 
-- Compare — compare two documents (source vs target), produce a marked-up result file with the differences highlighted, return a change-count summary; takes optional `sourcePassword` / `targetPassword` for protected documents
+- Compare — compare two documents (source vs target), produce a marked-up result file with the differences highlighted, and return a change-count summary plus a structured JSON list of changes (type, page, changed fragment, source/target text, table cell, style changes); takes optional `sourcePassword` / `targetPassword` for protected documents
+- AnalyzeChanges — return the differences between two documents as structured data only (the same JSON change list as Compare) without rendering or saving a result file; cheaper than Compare, for summarizing or reasoning about what changed; takes optional `sourcePassword` / `targetPassword`
 - GetDocumentInfo — inspect a single source document and return file type, page count, file size, and per-page dimensions as JSON; no comparison performed; takes optional `password` for protected documents
 
 ## Supported formats
@@ -32,9 +33,10 @@ PDF, DOCX, XLSX, PPTX, ODT, ODS, ODP, RTF, TXT, HTML, and 30+ more document and 
 
 ## Example prompts for AI agents
 
-- "Compare old.pdf and new.pdf — what changed?"
+- "Compare old.pdf and new.pdf and save the marked-up result."
 - "Diff contract-v1.docx against contract-v2.docx and tell me the change count."
-- "Show the differences between budget-q1.xlsx and budget-q2.xlsx."
+- "What changed between proposal-v1.docx and proposal-v2.docx? Summarize the edits."
+- "Did the prices change between budget-q1.xlsx and budget-q2.xlsx? Which cells?"
 - "How many edits separate report-draft.docx from report-final.docx?"
 - "How many pages does report.pdf have? Who's the author?"
 - "Inspect /docs/legal-brief.pdf — what's the file type and page count?"
