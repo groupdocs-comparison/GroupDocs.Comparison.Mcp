@@ -12,10 +12,11 @@ Published to NuGet as `GroupDocs.Comparison.Mcp` with the `McpServer` package ty
 
 | Tool | Description |
 |---|---|
-| `Compare` | Compare two documents (source vs target), produce a marked-up result file with the differences highlighted, and return a change-count summary. Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats; takes optional `sourcePassword` / `targetPassword`. |
+| `Compare` | Compare two documents (source vs target), produce a marked-up result file with the differences highlighted, and return a change-count summary plus a structured JSON list of the changes (type, page, changed fragment, source/target text, table cell, style changes). Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats; takes optional `sourcePassword` / `targetPassword`. |
+| `AnalyzeChanges` | Return the differences between two documents as structured data only — the same JSON change list as `Compare`, but without rendering or saving a result file. Cheaper than `Compare`; use for summarizing or reasoning about what changed. Optional `sourcePassword` / `targetPassword`. |
 | `GetDocumentInfo` | Inspect a single source document and return file type, page count, file size, and per-page dimensions as JSON. No comparison performed. Optional `password` for protected documents. |
 
-`Compare` accepts `sourceFile` + `targetFile` as `FileInput` (resolved via `IFileResolver`), plus optional `sourcePassword` / `targetPassword`. `GetDocumentInfo` takes just `file` (`FileInput`) and an optional `password`.
+`Compare` and `AnalyzeChanges` accept `sourceFile` + `targetFile` as `FileInput` (resolved via `IFileResolver`), plus optional `sourcePassword` / `targetPassword`. `GetDocumentInfo` takes just `file` (`FileInput`) and an optional `password`.
 
 ## Folder layout
 
@@ -26,6 +27,7 @@ src/                                           ← all projects + sln + Director
     ComparisonLicenseManager.cs                ← applies GroupDocs.Total license
     Tools/
       CompareTool.cs                           ← [McpServerTool] — Compare
+      AnalyzeChangesTool.cs                    ← [McpServerTool] — AnalyzeChanges
       GetDocumentInfoTool.cs                   ← [McpServerTool] — GetDocumentInfo
     .mcp/
       server.json                              ← NuGet.org reads this to generate mcp.json snippet
