@@ -16,9 +16,18 @@ FROM base AS final
 # Value="true" /> in the consuming csproj — without both, comparison runs that
 # touch image-bearing or workbook content throw PlatformNotSupportedException
 # on Linux.
+# ttf-mscorefonts-installer supplies Arial / Times New Roman / etc. — required
+# for faithful glyph rendering because the `compare` tool produces marked-up
+# output that re-renders text glyphs; without MS core fonts the engine fails on
+# font resolution and the wrapped error reads "An error occurred invoking
+# 'compare'." (Pitfall #17). The EULA is pre-accepted via debconf, and fc-cache
+# rebuilds the font index after install. This mirrors the Linux native-deps step
+# in the Tests repo's integration.yml.
 USER root
 RUN apt-get update \
- && apt-get install -y --no-install-recommends libgdiplus libfontconfig1 \
+ && echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections \
+ && apt-get install -y --no-install-recommends libgdiplus libfontconfig1 ttf-mscorefonts-installer \
+ && fc-cache -f -v \
  && rm -rf /var/lib/apt/lists/*
 
 # OCI image labels. VERSION is supplied by the publish workflow via

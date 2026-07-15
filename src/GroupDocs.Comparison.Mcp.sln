@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{756459F5-34A9-4D3A-ADE3-13C323FEA36D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Comparison.Mcp", "GroupDocs.Comparison.Mcp\GroupDocs.Comparison.Mcp.csproj", "{C1C2C3D4-1111-4111-8111-111111111111}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Comparison.Mcp", "GroupDocs.Comparison.Mcp\GroupDocs.Comparison.Mcp.csproj", "{667085F4-4E3A-44FC-95DC-BEE72EEDB4D3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4CBB1D5E-D9F2-4199-9898-FB6DDDFEEDB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Comparison.Mcp.Tests", "GroupDocs.Comparison.Mcp.Tests\GroupDocs.Comparison.Mcp.Tests.csproj", "{C1C2C3D4-2222-4222-8222-222222222222}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Comparison.Mcp.Tests", "GroupDocs.Comparison.Mcp.Tests\GroupDocs.Comparison.Mcp.Tests.csproj", "{EB239F82-C161-44B3-B1A9-457ECC1255F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +17,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C1C2C3D4-1111-4111-8111-111111111111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1C2C3D4-1111-4111-8111-111111111111}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1C2C3D4-1111-4111-8111-111111111111}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1C2C3D4-1111-4111-8111-111111111111}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1C2C3D4-2222-4222-8222-222222222222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1C2C3D4-2222-4222-8222-222222222222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1C2C3D4-2222-4222-8222-222222222222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1C2C3D4-2222-4222-8222-222222222222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667085F4-4E3A-44FC-95DC-BEE72EEDB4D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667085F4-4E3A-44FC-95DC-BEE72EEDB4D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667085F4-4E3A-44FC-95DC-BEE72EEDB4D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667085F4-4E3A-44FC-95DC-BEE72EEDB4D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB239F82-C161-44B3-B1A9-457ECC1255F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB239F82-C161-44B3-B1A9-457ECC1255F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB239F82-C161-44B3-B1A9-457ECC1255F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB239F82-C161-44B3-B1A9-457ECC1255F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C1C2C3D4-1111-4111-8111-111111111111} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-		{C1C2C3D4-2222-4222-8222-222222222222} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{667085F4-4E3A-44FC-95DC-BEE72EEDB4D3} = {756459F5-34A9-4D3A-ADE3-13C323FEA36D}
+		{EB239F82-C161-44B3-B1A9-457ECC1255F2} = {4CBB1D5E-D9F2-4199-9898-FB6DDDFEEDB8}
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
