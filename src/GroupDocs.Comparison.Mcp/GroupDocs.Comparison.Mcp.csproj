@@ -7,7 +7,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Description>MCP server for GroupDocs.Comparison for .NET — compare two documents and produce a marked-up diff report with a change-count summary, plus inspect source document info (file type, page count, dimensions). Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats. Exposes Compare and GetDocumentInfo tools to AI agents.</Description>
+    <Description>MCP server for GroupDocs.Comparison for .NET — compare two documents and produce a marked-up diff report with a change-count summary and a structured list of changes, analyze the differences as structured data without rendering a file, plus inspect source document info (file type, page count, dimensions). Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats. Exposes Compare, AnalyzeChanges and GetDocumentInfo tools to AI agents.</Description>
     <PackageTags>groupdocs;comparison;mcp;model-context-protocol;mcp-server;dotnet-tool;ai;document-comparison;diff;document-info</PackageTags>
     <PackageIcon>images\icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>

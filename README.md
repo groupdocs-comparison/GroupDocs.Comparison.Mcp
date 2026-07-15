@@ -56,7 +56,8 @@ the tool response. The simplest zero-setup option on Linux/macOS is the
 
 | Tool | Description |
 |---|---|
-| `Compare` | Compares two documents (source vs target) and produces a marked-up result file plus a change-count summary. Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats; optional `sourcePassword` / `targetPassword` cover protected documents. |
+| `Compare` | Compares two documents (source vs target) and produces a marked-up result **file**, plus a change-count summary and a structured JSON list of the changes (type, page, the changed fragment, surrounding source/target text, table cell, style changes). Use when the user wants the rendered diff document. Supports PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, HTML, and 30+ more formats; optional `sourcePassword` / `targetPassword` cover protected documents. |
+| `AnalyzeChanges` | Returns the differences between two documents as **structured data only** — the same JSON change list as `Compare`, but **without** rendering or saving a result file. Cheaper than `Compare`; use when the user wants to summarize, explain, or reason about *what* changed rather than obtain the marked-up file. Optional `sourcePassword` / `targetPassword`. |
 | `GetDocumentInfo` | Inspects a single source document and returns file type, page count, file size, and per-page dimensions as JSON — without performing a comparison. Useful as a pre-flight check before deciding whether to compare or which formats to expect. Optional `password` for protected documents. |
 
 ## Example prompts for AI agents
@@ -64,19 +65,22 @@ the tool response. The simplest zero-setup option on Linux/macOS is the
 Once the server is wired up to your MCP client (Claude Desktop, Cursor, VS Code Copilot, …), try:
 
 ```
-Compare old.pdf and new.pdf — what changed?
+Compare old.pdf and new.pdf and save the marked-up result.
 
 Diff contract-v1.docx against contract-v2.docx and tell me the change count.
 
-Show the differences between budget-q1.xlsx and budget-q2.xlsx.
+What changed between proposal-v1.docx and proposal-v2.docx? Summarize the edits.
+
+Did the prices change between budget-q1.xlsx and budget-q2.xlsx? Which cells?
 
 How many pages does report.pdf have? Who's the author?
 
 Inspect /docs/legal-brief.pdf — what's the file type and page count?
 ```
 
-The client picks `Compare` for diff questions and `GetDocumentInfo` for
-inspection-only questions.
+The client picks `Compare` when the user wants the rendered diff **file**,
+`AnalyzeChanges` when they only want to know **what** changed (summary /
+analysis, no file), and `GetDocumentInfo` for inspection-only questions.
 
 ## Configuration
 

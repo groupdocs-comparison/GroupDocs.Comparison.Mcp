@@ -15,7 +15,10 @@ public static class CompareTool
         "Call this tool immediately whenever the user asks to compare, diff, or check differences between two files. " +
         "Do NOT pre-check whether files exist — just pass the filenames the user provided. " +
         "The tool resolves files from storage and returns an error with available files if a name is not found. " +
-        "The returned text includes either `<N> change(s) detected` or `No changes detected`, followed by the saved path of the marked-up result document (file name pattern: `<source-stem>_compared<source-ext>`). " +
+        "Use this tool when the user wants the marked-up result FILE saved (to view, download, or share). " +
+        "If the user only wants to know WHAT changed (an analysis or summary of the differences) without needing the rendered file, prefer the `analyze_changes` tool, which is cheaper because it skips rendering. " +
+        "The returned text includes either `<N> change(s) detected` or `No changes detected`, followed by the saved path of the marked-up result document (file name pattern: `<source-stem>_compared<source-ext>`), " +
+        "and then a `Changes:` section containing a JSON array describing each change (type, component, page, the specific changed fragment `changedText`, surrounding source/target text, table cell, style changes). " +
         "On failure, the response text starts with 'Compare failed for' followed by the underlying exception type, message, and inner-exception chain.")]
     public static async Task<string> Compare(
         IFileResolver resolver,
@@ -55,7 +58,14 @@ public static class CompareTool
 
             var prefix = licenseManager.IsLicensed ? string.Empty : "[Evaluation mode] Output may include watermarks.\n\n";
             var description = $"{prefix}Compared '{source.FileName}' vs '{target.FileName}' — {summary}";
-            return await output.BuildFileOutputAsync(savedPath, description);
+            var fileOutput = await output.BuildFileOutputAsync(savedPath, description);
+
+            // Surface the structured changes alongside the rendered file. The
+            // file is for a human to open; this JSON is what the calling LLM can
+            // actually read to answer "what changed?". Raw JSON is appended
+            // verbatim and never piped through OutputHelper.TruncateText.
+            var changesJson = ChangeProjector.Serialize(changes);
+            return $"{fileOutput}\n\nChanges:\n{changesJson}";
         }
         catch (Exception ex)
         {
