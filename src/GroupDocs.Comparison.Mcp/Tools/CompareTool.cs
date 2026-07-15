@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Text;
 using GroupDocs.Comparison.Options;
 using GroupDocs.Mcp.Core;
 using GroupDocs.Mcp.Core.Licensing;
@@ -65,18 +64,7 @@ public static class CompareTool
             // generic "An error occurred invoking 'compare'." wrapper, which
             // hides the real cause and makes native-deps / fixture issues
             // indistinguishable. Pattern per Pitfall #18 of the clone prompt.
-            return FormatException(ex, source.FileName, target.FileName);
+            return ToolError.Format("Compare", source.FileName, ex, $" vs '{target.FileName}'");
         }
-    }
-
-    private static string FormatException(Exception ex, string sourceName, string targetName)
-    {
-        var sb = new StringBuilder();
-        sb.Append($"Compare failed for '{sourceName}' vs '{targetName}': ");
-        sb.Append($"{ex.GetType().FullName}: {ex.Message}");
-        var inner = ex.InnerException;
-        for (int depth = 0; inner != null && depth < 5; depth++, inner = inner.InnerException)
-            sb.Append($" | inner({depth}): {inner.GetType().FullName}: {inner.Message}");
-        return sb.ToString();
     }
 }
