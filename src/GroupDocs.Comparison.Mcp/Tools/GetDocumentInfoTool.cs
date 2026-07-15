@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using GroupDocs.Comparison.Interfaces;
@@ -69,18 +68,7 @@ public static class GetDocumentInfoTool
             // Surface the underlying engine exception instead of letting it
             // bubble to MCP's generic "An error occurred invoking
             // 'get_document_info'." wrapper. Pattern per Pitfall #18.
-            return FormatException(ex, resolved.FileName);
+            return ToolError.Format("Document-info lookup", resolved.FileName, ex);
         }
-    }
-
-    private static string FormatException(Exception ex, string fileName)
-    {
-        var sb = new StringBuilder();
-        sb.Append($"Document-info lookup failed for '{fileName}': ");
-        sb.Append($"{ex.GetType().FullName}: {ex.Message}");
-        var inner = ex.InnerException;
-        for (int depth = 0; inner != null && depth < 5; depth++, inner = inner.InnerException)
-            sb.Append($" | inner({depth}): {inner.GetType().FullName}: {inner.Message}");
-        return sb.ToString();
     }
 }
