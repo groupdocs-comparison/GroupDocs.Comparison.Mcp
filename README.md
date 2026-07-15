@@ -17,7 +17,7 @@ Pulls the latest stable release on every invocation. To pin to a specific
 version (recommended for shared configs and CI), append `@<version>`:
 
 ```bash
-dnx GroupDocs.Comparison.Mcp@26.5.2 --yes
+dnx GroupDocs.Comparison.Mcp@26.7.0 --yes
 ```
 
 **Or install as a global dotnet tool:**
@@ -34,6 +34,23 @@ docker run --rm -i \
   -v $(pwd)/documents:/data \
   ghcr.io/groupdocs-comparison/comparison-net-mcp:latest
 ```
+
+## Native prerequisites
+
+The underlying GroupDocs engine uses `System.Drawing` (GDI+) for some
+operations. When you run the server **natively** (via `dnx` or the global
+dotnet tool) on Linux or macOS, install the native `libgdiplus` library first:
+
+| Platform | Setup |
+|---|---|
+| Windows | Nothing — GDI+ is built into the OS. |
+| Linux | `sudo apt-get install -y libgdiplus libfontconfig1 ttf-mscorefonts-installer` |
+| macOS | `brew install mono-libgdiplus` |
+| Docker | Nothing — the image already bundles `libgdiplus`. |
+
+Skipping this on Linux/macOS surfaces as `DllNotFoundException: libgdiplus` in
+the tool response. The simplest zero-setup option on Linux/macOS is the
+**Docker image**.
 
 ## Available MCP Tools
 
@@ -87,7 +104,7 @@ inspection-only questions.
 ```
 
 > To pin to a specific version, replace `"GroupDocs.Comparison.Mcp"` with
-> `"GroupDocs.Comparison.Mcp@26.5.2"` in `args`. Pinning is recommended for
+> `"GroupDocs.Comparison.Mcp@26.7.0"` in `args`. Pinning is recommended for
 > shared / committed configs to avoid surprise upgrades.
 
 ## Usage with VS Code / GitHub Copilot
@@ -121,7 +138,7 @@ Alternatively, add manually to `.vscode/mcp.json`:
 ```
 
 > Same pinning rule as above — swap `"GroupDocs.Comparison.Mcp"` for
-> `"GroupDocs.Comparison.Mcp@26.5.2"` to lock to a specific release.
+> `"GroupDocs.Comparison.Mcp@26.7.0"` to lock to a specific release.
 
 ## Usage with Docker Compose
 
