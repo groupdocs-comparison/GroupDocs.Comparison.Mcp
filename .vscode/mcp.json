@@ -9,6 +9,14 @@
     }
   ],
   "servers": {
+    "groupdocs-comparison": {
+      "type": "stdio",
+      "command": "dnx",
+      "args": ["GroupDocs.Comparison.Mcp", "--yes"],
+      "env": {
+        "GROUPDOCS_MCP_STORAGE_PATH": "${input:storage_path}"
+      }
+    },
     "groupdocs-comparison-dev": {
       "type": "stdio",
       "command": "dotnet",
