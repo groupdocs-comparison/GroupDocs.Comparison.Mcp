@@ -5,11 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-// Must run before any tool can trigger a GDI+ P/Invoke: on Linux/macOS the engine's
-// System.Drawing.Common interop asks for 'gdiplus.dll', which .NET will not map to
-// libgdiplus on its own (DllNotFoundException). No-op on Windows.
-GdiPlusResolver.Register();
-
 var version = typeof(Program).Assembly
     .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
     ?.InformationalVersion
