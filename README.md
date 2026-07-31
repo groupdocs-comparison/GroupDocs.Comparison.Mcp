@@ -38,7 +38,7 @@ Pulls the latest stable release on every invocation. To pin to a specific
 version (recommended for shared configs and CI), append `@<version>`:
 
 ```bash
-dnx GroupDocs.Comparison.Mcp@26.7.4 --yes
+dnx GroupDocs.Comparison.Mcp@26.7.5 --yes
 ```
 
 **Or install as a global dotnet tool:**
@@ -142,7 +142,7 @@ To lift the limits, point `GROUPDOCS_LICENSE_PATH` at your `GroupDocs.Total.lic`
 ```
 
 > To pin to a specific version, replace `"GroupDocs.Comparison.Mcp"` with
-> `"GroupDocs.Comparison.Mcp@26.7.4"` in `args`. Pinning is recommended for
+> `"GroupDocs.Comparison.Mcp@26.7.5"` in `args`. Pinning is recommended for
 > shared / committed configs to avoid surprise upgrades.
 
 ## Usage with VS Code / GitHub Copilot
@@ -176,7 +176,7 @@ Alternatively, add manually to `.vscode/mcp.json`:
 ```
 
 > Same pinning rule as above — swap `"GroupDocs.Comparison.Mcp"` for
-> `"GroupDocs.Comparison.Mcp@26.7.4"` to lock to a specific release.
+> `"GroupDocs.Comparison.Mcp@26.7.5"` to lock to a specific release.
 
 ## Usage with Docker Compose
 
