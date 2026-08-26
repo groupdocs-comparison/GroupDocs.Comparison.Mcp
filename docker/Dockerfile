@@ -9,20 +9,13 @@ RUN dotnet publish src/GroupDocs.Comparison.Mcp/GroupDocs.Comparison.Mcp.csproj 
 
 FROM base AS final
 
-# Native graphics deps GroupDocs.Comparison's Cells (Excel) and image-format
-# paths need on Linux. libgdiplus is the GDI+ implementation System.Drawing.Common
-# P/Invokes; libfontconfig1 is its hidden font dependency. Pair this with
-# <RuntimeHostConfigurationOption Include="System.Drawing.EnableUnixSupport"
-# Value="true" /> in the consuming csproj — without both, comparison runs that
-# touch image-bearing or workbook content throw PlatformNotSupportedException
-# on Linux.
+# Native dependencies the comparison engine needs on Linux.
 # ttf-mscorefonts-installer supplies Arial / Times New Roman / etc. — required
-# for faithful glyph rendering because the `compare` tool produces marked-up
-# output that re-renders text glyphs; without MS core fonts the engine fails on
-# font resolution and the wrapped error reads "An error occurred invoking
-# 'compare'." (Pitfall #17). The EULA is pre-accepted via debconf, and fc-cache
-# rebuilds the font index after install. This mirrors the Linux native-deps step
-# in the Tests repo's integration.yml.
+# for faithful glyph rendering, because `compare` produces marked-up output that
+# re-renders text glyphs and font resolution fails without the MS core fonts.
+# The EULA is pre-accepted via debconf, and fc-cache rebuilds the font index
+# after install. libfontconfig1 is the font-configuration library those lookups
+# go through.
 USER root
 RUN apt-get update \
  && echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections \

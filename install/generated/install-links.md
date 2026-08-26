@@ -1,4 +1,4 @@
-# Generated install links - GroupDocs Comparison MCP (source: install/config.json, version 26.7.5)
+# Generated install links - GroupDocs Comparison MCP (source: install/config.json, version 26.8.0)
 
 Do not edit by hand; run `pwsh install/generate-install-links.ps1`.
 
