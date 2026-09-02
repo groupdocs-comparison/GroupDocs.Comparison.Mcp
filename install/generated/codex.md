@@ -17,4 +17,4 @@ GROUPDOCS_MCP_OUTPUT_PATH = "/path/to/documents"
 GROUPDOCS_LICENSE_PATH = ""   # empty = evaluation mode; set to your GroupDocs.Total.lic to lift limits
 ```
 
-Pin a version by replacing `GroupDocs.Comparison.Mcp` with `GroupDocs.Comparison.Mcp@26.8.0`.
+Pin a version by replacing `GroupDocs.Comparison.Mcp` with `GroupDocs.Comparison.Mcp@26.9.0`.
